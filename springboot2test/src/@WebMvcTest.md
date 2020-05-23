@@ -24,3 +24,13 @@
 - 주입된 MockMvc는 컨트롤러 테스트 시 모든 의존성을 로드하는 것이 아닌 BookController관련 빈만 로드하여 가벼운 MVC 테스트를 수행한다.
 - @Service 어노테이션은 @WebMvcTest의 적용 대상이 아니기 때문에 @MockBean을 활용하여 컨트롤러 내부의 의존성 요소인 BookService를 가짜 객체로 대체할 수 있다.
   - 가짜 객체(목 객체) : 실제 객체는 아니지만 특정 행위를 지정하여 설제 객체처럼 동작하게 만들 수 있다.
+
+
+
+### MockMvc
+
+- andExpect(status().isOK()) : HTTP 상탯값이 200인지 테스트
+- andExpect(view().name("book")) : 반환되는 뷰의 이름이 'book'인지 테스트
+- andExpect(model().attributeExists("bookList")) : 모델의 프로피터 중 'bookLIst"라는 프로퍼티가 존재하는지 테스트
+- andExpect(model().attribute("bookList", contains(book))) : 모델의 프로퍼티 중 
+  'bookList'라는 프로피터에 book 객체가 담겨져 있는지 테스트
