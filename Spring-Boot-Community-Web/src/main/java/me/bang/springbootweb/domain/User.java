@@ -3,6 +3,7 @@ package me.bang.springbootweb.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.bang.springbootweb.domain.enums.SocialType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,18 +29,27 @@ public class User {
     private String email;
 
     @Column
+    private String principal;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
+    @Column
     private LocalDateTime createdDate;
 
     @Column
     private LocalDateTime updatedDate;
 
     @Builder
-    public User(Long idx, String name, String password, String email,
-                LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public User(Long idx, String name, String password, String email, String principal,
+                SocialType socialType, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.idx = idx;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.principal = principal;
+        this.socialType = socialType;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
     }
