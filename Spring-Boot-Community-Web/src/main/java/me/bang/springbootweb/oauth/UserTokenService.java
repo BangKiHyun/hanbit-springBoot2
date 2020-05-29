@@ -1,7 +1,6 @@
 package me.bang.springbootweb.oauth;
 
 import me.bang.springbootweb.domain.enums.SocialType;
-import me.bang.springbootweb.ouath.ClientResource;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,7 @@
 package me.bang.springbootweb.config;
 
 import me.bang.springbootweb.domain.enums.SocialType;
-import me.bang.springbootweb.oauth.UserTokenService;
-import me.bang.springbootweb.ouath.ClientResource;
+import me.bang.springbootweb.oauth.ClientResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -41,7 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/login/**", "/css/**", "images/**", "/js/**",
-                        "/console?**").permitAll()  //
+                        "/console?**").permitAll()
+                .antMatchers("/facebook").hasAnyAuthority(FACEBOOK.getRoleType())
+                .antMatchers("/google").hasAnyAuthority(GOOGLE.getRoleType())
+                .antMatchers("/kakao").hasAnyAuthority(KAKAO.getRoleType())
                 .anyRequest().authenticated() // 설정한 요청 이외의 리퀘스트 요청
                 .and()
                 .headers().frameOptions().disable()
@@ -87,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         OAuth2RestTemplate template = new OAuth2RestTemplate(client.getClient(), oAuth2ClientContext);
 
         filter.setRestTemplate(template);
-        filter.setTokenServices(new UserTokenService(client, socialType));
+        filter.setTokenServices(new ClientResource.UserTokenService(client, socialType));
         filter.setAuthenticationSuccessHandler((request, response, authentication) -> response.sendRedirect("/" + socialType.getValue() + "/complete"));
         filter.setAuthenticationFailureHandler((request, response, exception) -> response.sendRedirect("/error"));
         return filter;
