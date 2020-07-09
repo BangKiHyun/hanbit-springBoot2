@@ -1,10 +1,10 @@
-package me.bang.springbootweb;
+package me.bang.springboot2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootwebApplicationTests {
+class Springboot2ApplicationTests {
 
     @Test
     void contextLoads() {

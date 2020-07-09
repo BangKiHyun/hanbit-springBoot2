@@ -1,8 +1,10 @@
-package me.bang.springbootweb.repository;
+package me.bang.springboot2.repository;
 
-import me.bang.springbootweb.domain.User;
+import me.bang.springboot2.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 }

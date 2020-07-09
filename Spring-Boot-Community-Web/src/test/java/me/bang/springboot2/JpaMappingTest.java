@@ -1,10 +1,10 @@
-package me.bang.springbootweb;
+package me.bang.springboot2;
 
-import me.bang.springbootweb.domain.Board;
-import me.bang.springbootweb.domain.User;
-import me.bang.springbootweb.domain.enums.BoardType;
-import me.bang.springbootweb.repository.BoardRepository;
-import me.bang.springbootweb.repository.UserRepository;
+import me.bang.springboot2.domain.Board;
+import me.bang.springboot2.domain.User;
+import me.bang.springboot2.enums.BoardType;
+import me.bang.springboot2.repository.BoardRepository;
+import me.bang.springboot2.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -35,7 +34,7 @@ public class JpaMappingTest {
                 .name("bang")
                 .password("test")
                 .email(email)
-                .createdDate(LocalDateTime.now())
+                .createDate(LocalDateTime.now())
                 .build());
 
         boardRepository.save(Board.builder()
@@ -43,23 +42,23 @@ public class JpaMappingTest {
                 .subTitle("서브 타이틀")
                 .content("컨텐츠")
                 .boardType(BoardType.FREE)
-                .createdDate(LocalDateTime.now())
-                .updatedDate(LocalDateTime.now())
-                .user(user).build());
+                .createDate(LocalDateTime.now())
+                .updateeDate(LocalDateTime.now())
+                .user(user)
+                .build());
     }
 
     @Test
-    public void 제대로_생성_됐는지_테스트() {
+    public void 제대로_생성됐는지_테스트() {
         User user = userRepository.findByEmail(email);
-        assertThat(user.getName(), is("bang"));
-        assertThat(user.getPassword(), is("test"));
-        assertThat(user.getEmail(), is(email));
+        assertThat(user.getName()).isEqualTo("bang");
+        assertThat(user.getPassword()).isEqualTo("test");
+        assertThat(user.getEmail()).isEqualTo(email);
 
         Board board = boardRepository.findByUser(user);
-        assertThat(board.getTitle(), is(boardTestTitle));
-        assertThat(board.getSubTitle(), is("서브 타이틀"));
-        assertThat(board.getContent(), is("컨텐츠"));
-        assertThat(board.getBoardType(), is(BoardType.FREE));
+        assertThat(board.getTitle()).isEqualTo(boardTestTitle);
+        assertThat(board.getSubTitle()).isEqualTo("서브 타이틀");
+        assertThat(board.getContent()).isEqualTo("컨텐츠");
+        assertThat((board.getBoardType())).isEqualTo(BoardType.FREE);
     }
-
 }

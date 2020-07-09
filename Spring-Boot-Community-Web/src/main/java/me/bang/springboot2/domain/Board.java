@@ -1,9 +1,9 @@
-package me.bang.springbootweb.domain;
+package me.bang.springboot2.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.bang.springbootweb.domain.enums.BoardType;
+import me.bang.springboot2.enums.BoardType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 public class Board implements Serializable {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    @Column
+    private Long id;
 
     @Column
     private String title;
@@ -34,23 +34,23 @@ public class Board implements Serializable {
     private BoardType boardType;
 
     @Column
-    private LocalDateTime createdDate;
+    LocalDateTime createDate;
 
     @Column
-    private LocalDateTime updatedDate;
+    LocalDateTime updatedDate;
 
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType,
-                 LocalDateTime createdDate, LocalDateTime updatedDate, User user) {
+                 LocalDateTime createDate, LocalDateTime updateeDate, User user) {
         this.title = title;
         this.subTitle = subTitle;
         this.content = content;
         this.boardType = boardType;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+        this.createDate = createDate;
+        this.updatedDate = updateeDate;
         this.user = user;
     }
 }

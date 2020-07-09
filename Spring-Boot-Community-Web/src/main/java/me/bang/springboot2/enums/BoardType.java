@@ -1,4 +1,4 @@
-package me.bang.springbootweb.domain.enums;
+package me.bang.springboot2.enums;
 
 public enum BoardType {
     NOTICE("공지사항"),
@@ -6,7 +6,7 @@ public enum BoardType {
 
     private String value;
 
-    BoardType(String value) {
+    BoardType(final String value) {
         this.value = value;
     }
 
