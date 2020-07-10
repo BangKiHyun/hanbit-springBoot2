@@ -37,7 +37,7 @@ public class Springboot2Application {
                             .subTitle("순서" + id)
                             .content("컨텐츠")
                             .boardType(BoardType.FREE)
-                            .createDate(LocalDateTime.now())
+                            .createdDate(LocalDateTime.now())
                             .updateeDate(LocalDateTime.now())
                             .user(user)
                             .build())

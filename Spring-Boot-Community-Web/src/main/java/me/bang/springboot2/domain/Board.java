@@ -34,7 +34,7 @@ public class Board implements Serializable {
     private BoardType boardType;
 
     @Column
-    LocalDateTime createDate;
+    LocalDateTime createdDate;
 
     @Column
     LocalDateTime updatedDate;
@@ -44,12 +44,12 @@ public class Board implements Serializable {
 
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType,
-                 LocalDateTime createDate, LocalDateTime updateeDate, User user) {
+                 LocalDateTime createdDate, LocalDateTime updateeDate, User user) {
         this.title = title;
         this.subTitle = subTitle;
         this.content = content;
         this.boardType = boardType;
-        this.createDate = createDate;
+        this.createdDate = createdDate;
         this.updatedDate = updateeDate;
         this.user = user;
     }
